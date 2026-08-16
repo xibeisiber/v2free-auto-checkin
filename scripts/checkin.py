@@ -37,6 +37,12 @@ AUTH_METHOD = os.environ.get("AUTH_METHOD", "cookie").strip().lower()
 EMAIL = os.environ.get("V2FREE_EMAIL", "")
 PASSWORD = os.environ.get("V2FREE_PASSWORD", "")
 
+EMAIL1 = os.environ.get("V2FREE_EMAIL1", "")
+PASSWORD1 = os.environ.get("V2FREE_PASSWORD1", "")
+
+EMAIL2 = os.environ.get("V2FREE_EMAIL2", "")
+PASSWORD2 = os.environ.get("V2FREE_PASSWORD2", "")
+
 # Cookie 字符串（从浏览器复制完整 Cookie）
 COOKIE = os.environ.get("V2FREE_COOKIE", "")
 
@@ -323,7 +329,7 @@ class V2FreeCheckin:
         return result
 
 
-def main():
+def main(youremail, yourpassword):
     """主函数"""
     print("=" * 50)
     print("  V2Free (Maxo) 每日自动签到")
@@ -345,8 +351,8 @@ def main():
         else:
             log.error("❌ Cookie 为空！请检查 Secrets 中 V2FREE_COOKIE 的配置")
     elif AUTH_METHOD == "password":
-        if EMAIL and PASSWORD:
-            authenticated = client.login_by_password(EMAIL, PASSWORD)
+        if youremail and yourpassword:
+            authenticated = client.login_by_password(youremail, yourpassword)
         else:
             log.error("❌ 邮箱或密码为空！请检查 Secrets 中 V2FREE_EMAIL 和 V2FREE_PASSWORD 的配置")
     else:
@@ -388,8 +394,14 @@ def main():
     print("=" * 50)
 
     # 退出码
-    sys.exit(0 if result["success"] else 1)
+    # sys.exit(0 if result["success"] else 1)
 
 
 if __name__ == "__main__":
-    main()
+    print("--- account 1 ---")
+    main(EMAIL, PASSWORD)
+    print("--- account 2 ---")
+    main(EMAIL1, PASSWORD1)
+    print("--- account 3 ---")
+    main(EMAIL2, PASSWORD2)
+    sys.exit(0)
