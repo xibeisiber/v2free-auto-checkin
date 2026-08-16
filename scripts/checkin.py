@@ -17,6 +17,7 @@ import json
 import re
 import logging
 from datetime import datetime, timezone, timedelta
+import time
 
 try:
     import requests
@@ -118,7 +119,7 @@ class V2FreeCheckin:
 
             # 发送登录请求
             login_data = {"email": email, "passwd": password}
-            print(login_data)
+
             if csrf_token:
                 login_data["csrf_token"] = csrf_token
 
@@ -401,8 +402,10 @@ def main(youremail, yourpassword):
 if __name__ == "__main__":
     print("--- account 1 ---")
     main(EMAIL, PASSWORD)
+    time.sleep(2)  # 等待 2 秒，避免请求过快
     print("--- account 2 ---")
     main(EMAIL1, PASSWORD1)
+    time.sleep(2)  # 等待 2 秒，避免请求过快
     print("--- account 3 ---")
     main(EMAIL2, PASSWORD2)
     sys.exit(0)
