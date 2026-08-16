@@ -28,7 +28,7 @@ except ImportError:
 # ==================== 配置区 ====================
 
 # V2Free 网站地址（可根据实际域名修改）
-BASE_URL = os.environ.get("V2FREE_URL", "https://w1.maxo.top")
+BASE_URL = os.environ.get("V2FREE_URL", "https://go.runba.cyou")
 
 # 认证方式：password（账号密码）或 cookie（直接用 Cookie）
 AUTH_METHOD = os.environ.get("AUTH_METHOD", "cookie").strip().lower()
@@ -85,13 +85,11 @@ class V2FreeCheckin:
         self.base_url = base_url.rstrip("/")
         self.session = requests.Session()
         self.session.headers.update({
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            ),
-            "Accept": "application/json, text/html, */*",
-            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest',  # 标识这是一个 AJAX 请求
+            'Content-Type': 'application/json',    # 发送 JSON 数据
+            'Origin': 'https://go.runba.cyou',
+            'Referer': 'https://go.runba.cyou/auth/login',
         })
 
     def _get(self, path: str, **kwargs) -> requests.Response:
@@ -119,13 +117,15 @@ class V2FreeCheckin:
 
             # 发送登录请求
             login_data = {"email": email, "passwd": password}
+            print(login_data)
             if csrf_token:
                 login_data["csrf_token"] = csrf_token
 
-            resp = self._post("/auth/login", data=login_data)
+            resp = self._post("/auth/login", json=login_data)
 
             if resp.status_code in (200, 302, 301):
                 # 检查是否登录成功（跳转到用户中心或返回成功 JSON）
+                print("检查登录响应")
                 final_url = resp.url
                 try:
                     result = resp.json()
