@@ -73,8 +73,12 @@ jobs:
           V2FREE_COOKIE: ${{ secrets.V2FREE_COOKIE }}
 
           # 在仓库 Settings → Secrets 中设置
-
-
+          V2FREE_EMAIL: ${{ secrets.V2FREE_EMAIL }}
+          V2FREE_PASSWORD: ${{ secrets.V2FREE_PASSWORD }}
+          V2FREE_EMAIL1: ${{ secrets.V2FREE_EMAIL1 }}
+          V2FREE_PASSWORD1: ${{ secrets.V2FREE_PASSWORD1 }}
+          V2FREE_EMAIL2: ${{ secrets.V2FREE_EMAIL2 }}
+          V2FREE_PASSWORD2: ${{ secrets.V2FREE_PASSWORD2 }}
 
           # 可选覆盖
 
