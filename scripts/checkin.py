@@ -31,7 +31,8 @@ except ImportError:
 BASE_URL = os.environ.get("V2FREE_URL", "https://go.runba.cyou")
 
 # 认证方式：password（账号密码）或 cookie（直接用 Cookie）
-AUTH_METHOD = os.environ.get("AUTH_METHOD", "cookie").strip().lower()
+# AUTH_METHOD = os.environ.get("AUTH_METHOD", "cookie").strip().lower()
+AUTH_METHOD = "password"
 
 # 账号密码（从 GitHub Secrets 中读取，不要明文写在这里！）
 EMAIL = os.environ.get("V2FREE_EMAIL", "")
