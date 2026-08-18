@@ -19,16 +19,11 @@ name: V2Free 每日自动签到
 
 
 on:
-
-  # push:
-  #   branches: [main]   # 测试阶段先用 push 触发
-
+  push:
+    branches: [main]   # 测试阶段先用 push 触发
   schedule:
-    - cron: '35 1 * * *'
-
+    - cron: '55 1 * * *'
   workflow_dispatch:
-
-
 
 jobs:
 
