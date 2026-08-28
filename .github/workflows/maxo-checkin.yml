@@ -6,7 +6,7 @@
 
 #  📌 功能说明：
 
-#     每天 08:30（北京时间）自动执行 V2Free 签到
+#     每天 01:03（北京时间）自动执行 V2Free 签到
 
 #
 
@@ -22,7 +22,7 @@ on:
   push:
     branches: [main]   # 测试阶段先用 push 触发
   schedule:
-    - cron: '55 1 * * *'
+    - cron: '3 17 * * *'
   workflow_dispatch:
 
 jobs:
