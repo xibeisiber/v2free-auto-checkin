@@ -405,7 +405,7 @@ if __name__ == "__main__":
     time.sleep(2)  # 等待 2 秒，避免请求过快
     print("--- account 2 ---")
     main(EMAIL1, PASSWORD1)
-    # time.sleep(2)  # 等待 2 秒，避免请求过快
-    # print("--- account 3 ---")
-    # main(EMAIL2, PASSWORD2)
+    time.sleep(2)  # 等待 2 秒，避免请求过快
+    print("--- account 3 ---")
+    main(EMAIL2, PASSWORD2)
     sys.exit(0)
